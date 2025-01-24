@@ -6,8 +6,8 @@ void delai_approx(void);
 
 void main(void) {
     // Configuration des ports en sortie
-    TRISD = 0x00; // Port B en sortie led D1 a D4
-    TRISB = 0x00; // Port D en sortie led D5 a D8
+    TRISD = 0x00; // Port D en sortie led D1 a D4
+    TRISB = 0x00; // Port B en sortie led D5 a D8
 
     while (1) {
         // Allumer les LEDs D1-D4
