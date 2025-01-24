@@ -33,10 +33,12 @@
 [v _LATB LATB `VEuc  1 e 1 @269 ]
 "2476
 [v _LATD LATD `VEuc  1 e 1 @271 ]
-"15 C:\Users\ninil\OneDrive - JUNIA Grande école d'ingénieurs\Documents\AP4\FPGA_&_MicroContrôleurs\MicroContrôleurs\AP_Circuits_Programmables\ap4-tp-microcontroleurs\TP_Microcontroleurs\TP1c_timer2.X\main.c
-[v _led_index led_index `uc  1 e 1 0 ]
+"14 C:\Users\ninil\OneDrive - JUNIA Grande école d'ingénieurs\Documents\AP4\FPGA_&_MicroContrôleurs\MicroContrôleurs\AP_Circuits_Programmables\ap4-tp-microcontroleurs\TP_Microcontroleurs\TP1c_timer2.X\main.c
+[v _led_index led_index `i  1 e 2 0 ]
+"15
+[v _timer_count timer_count `i  1 e 2 0 ]
 "17
 [v _main main `(v  1 e 1 0 ]
 {
-"55
+"57
 } 0

@@ -721,6 +721,7 @@ TOSL equ 0FEEh ;#
 TOSH equ 0FEFh ;# 
 	debug_source C
 	FNROOT	_main
+	global	_timer_count
 	global	_led_index
 	global	_PIR1bits
 _PIR1bits	set	0x11
@@ -770,8 +771,11 @@ __initialization:
 psect	bssCOMMON,class=COMMON,space=1,noexec
 global __pbssCOMMON
 __pbssCOMMON:
+_timer_count:
+       ds      2
+
 _led_index:
-       ds      1
+       ds      2
 
 	file	"dist/default/production\TP1c_timer2.X.production.s"
 	line	#
@@ -779,6 +783,9 @@ _led_index:
 psect cinit,class=CODE,delta=2,merge=1
 	global __pbssCOMMON
 	clrf	((__pbssCOMMON)+0)&07Fh
+	clrf	((__pbssCOMMON)+1)&07Fh
+	clrf	((__pbssCOMMON)+2)&07Fh
+	clrf	((__pbssCOMMON)+3)&07Fh
 psect cinit,class=CODE,delta=2,merge=1
 global end_of_initialization,__end_of__initialization
 
@@ -799,13 +806,13 @@ __pcstackCOMMON:
 ;!    Strings     0
 ;!    Constant    0
 ;!    Data        0
-;!    BSS         1
+;!    BSS         4
 ;!    Persistent  32
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMMON           14      1       2
+;!    COMMON           14      1       5
 ;!    BANK0            80      0       0
 ;!    BANK1            80      0       0
 ;!    BANK2            80      0       0
@@ -978,7 +985,7 @@ __pcstackCOMMON:
 ;!BITCOMMON            E      0       0       1        0.0%
 ;!BITSFR0              0      0       0       1        0.0%
 ;!SFR0                 0      0       0       1        0.0%
-;!COMMON               E      1       2       2       14.3%
+;!COMMON               E      1       5       2       35.7%
 ;!BITSFR1              0      0       0       2        0.0%
 ;!SFR1                 0      0       0       2        0.0%
 ;!BITSFR2              0      0       0       3        0.0%
@@ -1016,7 +1023,7 @@ __pcstackCOMMON:
 ;!SFR12                0      0       0      13        0.0%
 ;!BITSFR13             0      0       0      14        0.0%
 ;!SFR13                0      0       0      14        0.0%
-;!ABS                  0      0       2      14        0.0%
+;!ABS                  0      0       5      14        0.0%
 ;!BITBANK5            50      0       0      15        0.0%
 ;!BITSFR14             0      0       0      15        0.0%
 ;!SFR14                0      0       0      15        0.0%
@@ -1058,7 +1065,7 @@ __pcstackCOMMON:
 ;!SFR26                0      0       0      27        0.0%
 ;!BITSFR27             0      0       0      28        0.0%
 ;!SFR27                0      0       0      28        0.0%
-;!DATA                 0      0       2      28        0.0%
+;!DATA                 0      0       5      28        0.0%
 ;!BANK11              50      0       0      29        0.0%
 ;!BITSFR28             0      0       0      29        0.0%
 ;!SFR28                0      0       0      29        0.0%
@@ -1141,149 +1148,163 @@ _main:
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0]
 	line	19
 	
-l562:	
-;main.c: 19:     TRISD &= ~0x01;
-	movlw	low(0FEh)
+l565:	
+;main.c: 19:     TRISD &= ~(0x01 | 0x02 | 0x04 | 0x08);
+	movlw	low(0F0h)
 	movwf	(??_main+0)+0
 	movf	(??_main+0)+0,w
 	movlb 1	; select bank1
 	andwf	(143)^080h,f	;volatile
 	line	20
-;main.c: 20:     TRISD &= ~0x02;
-	movlw	low(0FDh)
+;main.c: 20:     TRISB &= ~(0x01 | 0x02 | 0x04 | 0x08);
+	movlw	low(0F0h)
 	movwf	(??_main+0)+0
 	movf	(??_main+0)+0,w
-	andwf	(143)^080h,f	;volatile
-	line	21
-;main.c: 21:     TRISD &= ~0x04;
-	movlw	low(0FBh)
-	movwf	(??_main+0)+0
-	movf	(??_main+0)+0,w
-	andwf	(143)^080h,f	;volatile
+	andwf	(141)^080h,f	;volatile
 	line	22
-;main.c: 22:     TRISD &= ~0x08;
-	movlw	low(0F7h)
-	movwf	(??_main+0)+0
-	movf	(??_main+0)+0,w
-	andwf	(143)^080h,f	;volatile
-	line	23
-;main.c: 23:     TRISB &= ~0x01;
-	movlw	low(0FEh)
-	movwf	(??_main+0)+0
-	movf	(??_main+0)+0,w
-	andwf	(141)^080h,f	;volatile
-	line	24
-;main.c: 24:     TRISB &= ~0b00000010;
-	movlw	low(0FDh)
-	movwf	(??_main+0)+0
-	movf	(??_main+0)+0,w
-	andwf	(141)^080h,f	;volatile
-	line	25
-;main.c: 25:     TRISB &= ~0b00000100;
-	movlw	low(0FBh)
-	movwf	(??_main+0)+0
-	movf	(??_main+0)+0,w
-	andwf	(141)^080h,f	;volatile
-	line	26
-;main.c: 26:     TRISB &= ~0b00001000;
-	movlw	low(0F7h)
-	movwf	(??_main+0)+0
-	movf	(??_main+0)+0,w
-	andwf	(141)^080h,f	;volatile
-	line	28
 	
-l564:	
-;main.c: 28:     PR2 = 255;
+l567:	
+;main.c: 22:     PR2 = 255;
 	movlw	low(0FFh)
 	movlb 0	; select bank0
 	movwf	(27)	;volatile
-	line	29
+	line	23
 	
-l566:	
-;main.c: 29:     T2CON=0b01111100;
+l569:	
+;main.c: 23:     T2CON = 0b01111100;
 	movlw	low(07Ch)
 	movwf	(28)	;volatile
-	line	33
+	line	26
 	
-l568:	
-;main.c: 33:         if (PIR1bits.TMR2IF) {
+l571:	
+;main.c: 26:         if (PIR1bits.TMR2IF) {
 	movlb 0	; select bank0
 	btfss	(17),1	;volatile
 	goto	u11
 	goto	u10
 u11:
-	goto	l568
+	goto	l571
 u10:
+	line	27
+	
+l573:	
+;main.c: 27:             PIR1bits.TMR2IF = 0;
+	bcf	(17),1	;volatile
+	line	30
+	
+l575:	
+;main.c: 30:             timer_count++;
+	movlw	01h
+	addwf	(_timer_count),f
+	movlw	0
+	addwfc	(_timer_count+1),f
+	line	33
+;main.c: 33:             if (timer_count >= 61) {
+	movf	(_timer_count+1),w
+	xorlw	80h
+	movwf	(??_main+0)+0
+	movlw	(0)^80h
+	subwf	(??_main+0)+0,w
+	skipz
+	goto	u25
+	movlw	03Dh
+	subwf	(_timer_count),w
+u25:
+
+	skipc
+	goto	u21
+	goto	u20
+u21:
+	goto	l571
+u20:
 	line	34
 	
-l570:	
-;main.c: 34:             PIR1bits.TMR2IF = 0;
-	bcf	(17),1	;volatile
+l577:	
+;main.c: 34:                 timer_count = 0;
+	clrf	(_timer_count)
+	clrf	(_timer_count+1)
 	line	37
-	
-l572:	
-;main.c: 37:             LATD = 0x00;
+;main.c: 37:                 LATD = 0x00;
 	movlb 2	; select bank2
 	clrf	(271)^0100h	;volatile
 	line	38
-;main.c: 38:             LATB = 0x00;
+;main.c: 38:                 LATB = 0x00;
 	clrf	(269)^0100h	;volatile
 	line	41
-;main.c: 41:             switch (led_index) {
-	goto	l576
+;main.c: 41:                 switch (led_index) {
+	goto	l581
 	line	42
-;main.c: 42:                 case 0: LATD |= 0x01; break;
-	
-l24:	
-	bsf	(271)^0100h+(0/8),(0)&7	;volatile
-	goto	l578
-	line	43
-;main.c: 43:                 case 1: LATD |= 0x02; break;
-	
-l26:	
-	bsf	(271)^0100h+(1/8),(1)&7	;volatile
-	goto	l578
-	line	44
-;main.c: 44:                 case 2: LATD |= 0x04; break;
+;main.c: 42:                     case 0: LATD |= 0x01; break;
 	
 l27:	
-	bsf	(271)^0100h+(2/8),(2)&7	;volatile
-	goto	l578
-	line	45
-;main.c: 45:                 case 3: LATD |= 0x08; break;
-	
-l28:	
-	bsf	(271)^0100h+(3/8),(3)&7	;volatile
-	goto	l578
-	line	46
-;main.c: 46:                 case 4: LATB |= 0x01; break;
+	bsf	(271)^0100h+(0/8),(0)&7	;volatile
+	goto	l583
+	line	43
+;main.c: 43:                     case 1: LATD |= 0x02; break;
 	
 l29:	
-	bsf	(269)^0100h+(0/8),(0)&7	;volatile
-	goto	l578
-	line	47
-;main.c: 47:                 case 5: LATB |= 0b00000010; break;
+	bsf	(271)^0100h+(1/8),(1)&7	;volatile
+	goto	l583
+	line	44
+;main.c: 44:                     case 2: LATD |= 0x04; break;
 	
 l30:	
-	bsf	(269)^0100h+(1/8),(1)&7	;volatile
-	goto	l578
-	line	48
-;main.c: 48:                 case 6: LATB |= 0b00000100; break;
+	bsf	(271)^0100h+(2/8),(2)&7	;volatile
+	goto	l583
+	line	45
+;main.c: 45:                     case 3: LATD |= 0x08; break;
 	
 l31:	
-	bsf	(269)^0100h+(2/8),(2)&7	;volatile
-	goto	l578
-	line	49
-;main.c: 49:                 case 7: LATB |= 0b00001000; break;
+	bsf	(271)^0100h+(3/8),(3)&7	;volatile
+	goto	l583
+	line	46
+;main.c: 46:                     case 4: LATB |= 0x01; break;
 	
 l32:	
+	bsf	(269)^0100h+(0/8),(0)&7	;volatile
+	goto	l583
+	line	47
+;main.c: 47:                     case 5: LATB |= 0x02; break;
+	
+l33:	
+	bsf	(269)^0100h+(1/8),(1)&7	;volatile
+	goto	l583
+	line	48
+;main.c: 48:                     case 6: LATB |= 0x04; break;
+	
+l34:	
+	bsf	(269)^0100h+(2/8),(2)&7	;volatile
+	goto	l583
+	line	49
+;main.c: 49:                     case 7: LATB |= 0x08; break;
+	
+l35:	
 	bsf	(269)^0100h+(3/8),(3)&7	;volatile
-	goto	l578
+	goto	l583
 	line	50
 	
-l576:	
-	movf	(_led_index),w
-	; Switch size 1, requested type "simple"
+l581:	
+	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
+; Switch size 1, requested type "simple"
+; Number of cases is 1, Range of values is 0 to 0
+; switch strategies available:
+; Name         Instructions Cycles
+; simple_byte            4     3 (average)
+; direct_byte            8     6 (fixed)
+; jumptable            260     6 (fixed)
+;	Chosen strategy is simple_byte
+
+	movf (_led_index+1),w
+	asmopt push
+	asmopt off
+	xorlw	0^0	; case 0
+	skipnz
+	goto	l623
+	goto	l583
+	asmopt pop
+	
+l623:	
+; Switch size 1, requested type "simple"
 ; Number of cases is 8, Range of values is 0 to 7
 ; switch strategies available:
 ; Name         Instructions Cycles
@@ -1292,63 +1313,77 @@ l576:
 ; jumptable            260     6 (fixed)
 ;	Chosen strategy is simple_byte
 
+	movf (_led_index),w
 	asmopt push
 	asmopt off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l24
+	goto	l27
 	xorlw	1^0	; case 1
 	skipnz
-	goto	l26
+	goto	l29
 	xorlw	2^1	; case 2
 	skipnz
-	goto	l27
+	goto	l30
 	xorlw	3^2	; case 3
 	skipnz
-	goto	l28
+	goto	l31
 	xorlw	4^3	; case 4
 	skipnz
-	goto	l29
+	goto	l32
 	xorlw	5^4	; case 5
 	skipnz
-	goto	l30
+	goto	l33
 	xorlw	6^5	; case 6
 	skipnz
-	goto	l31
+	goto	l34
 	xorlw	7^6	; case 7
 	skipnz
-	goto	l32
-	goto	l578
+	goto	l35
+	goto	l583
 	asmopt pop
 
-	line	51
-	
-l578:	
-;main.c: 51:             led_index++;
-	movlw	low(01h)
-	movwf	(??_main+0)+0
-	movf	(??_main+0)+0,w
-	addwf	(_led_index),f
 	line	52
 	
-l580:	
-;main.c: 52:             if (led_index >= 8) led_index = 0;
-	movlw	low(08h)
+l583:	
+;main.c: 52:                 led_index++;
+	movlw	01h
+	addwf	(_led_index),f
+	movlw	0
+	addwfc	(_led_index+1),f
+	line	53
+;main.c: 53:                 if (led_index >= 8) led_index = 0;
+	movf	(_led_index+1),w
+	xorlw	80h
+	movwf	(??_main+0)+0
+	movlw	(0)^80h
+	subwf	(??_main+0)+0,w
+	skipz
+	goto	u35
+	movlw	08h
 	subwf	(_led_index),w
+u35:
+
 	skipc
-	goto	u21
-	goto	u20
-u21:
-	goto	l568
-u20:
+	goto	u31
+	goto	u30
+u31:
+	goto	l24
+u30:
 	
-l582:	
+l585:	
 	clrf	(_led_index)
-	goto	l568
+	clrf	(_led_index+1)
+	goto	l571
+	line	55
+;main.c: 55:         }
+	
+l24:	
+	goto	l571
 	global	start
 	ljmp	start
 	callstack 0
-	line	55
+	line	57
 GLOBAL	__end_of_main
 	__end_of_main:
 	signat	_main,89

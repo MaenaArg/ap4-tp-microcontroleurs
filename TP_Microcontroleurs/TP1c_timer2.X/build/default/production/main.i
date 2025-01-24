@@ -9694,45 +9694,48 @@ extern __bank0 __bit __timeout;
 #pragma config LPBOR = OFF
 #pragma config LVP = OFF
 # 1 "main.c" 2
-# 15 "main.c"
-unsigned char led_index = 0;
+# 14 "main.c"
+int led_index = 0;
+int timer_count = 0;
 
 void main(void) {
 
-    TRISD &= ~0x01;
-    TRISD &= ~0x02;
-    TRISD &= ~0x04;
-    TRISD &= ~0x08;
-    TRISB &= ~0x01;
-    TRISB &= ~0b00000010;
-    TRISB &= ~0b00000100;
-    TRISB &= ~0b00001000;
+    TRISD &= ~(0x01 | 0x02 | 0x04 | 0x08);
+    TRISB &= ~(0x01 | 0x02 | 0x04 | 0x08);
 
     PR2 = 255;
-    T2CON=0b01111100;
-
+    T2CON = 0b01111100;
 
     while(1) {
         if (PIR1bits.TMR2IF) {
             PIR1bits.TMR2IF = 0;
 
 
-            LATD = 0x00;
-            LATB = 0x00;
+            timer_count++;
 
 
-            switch (led_index) {
-                case 0: LATD |= 0x01; break;
-                case 1: LATD |= 0x02; break;
-                case 2: LATD |= 0x04; break;
-                case 3: LATD |= 0x08; break;
-                case 4: LATB |= 0x01; break;
-                case 5: LATB |= 0b00000010; break;
-                case 6: LATB |= 0b00000100; break;
-                case 7: LATB |= 0b00001000; break;
+            if (timer_count >= 61) {
+                timer_count = 0;
+
+
+                LATD = 0x00;
+                LATB = 0x00;
+
+
+                switch (led_index) {
+                    case 0: LATD |= 0x01; break;
+                    case 1: LATD |= 0x02; break;
+                    case 2: LATD |= 0x04; break;
+                    case 3: LATD |= 0x08; break;
+                    case 4: LATB |= 0x01; break;
+                    case 5: LATB |= 0x02; break;
+                    case 6: LATB |= 0x04; break;
+                    case 7: LATB |= 0x08; break;
+                }
+
+                led_index++;
+                if (led_index >= 8) led_index = 0;
             }
-            led_index++;
-            if (led_index >= 8) led_index = 0;
         }
     }
 }
