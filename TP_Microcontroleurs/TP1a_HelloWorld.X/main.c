@@ -1,11 +1,6 @@
 #include "configbits.h" // Bits de configuration
 #include <xc.h>         // Definition des registres specifiques au uC
 
-
-// Configuration des ports pour les LEDs
-#define LEDS_D1_D4 LATB
-#define LEDS_D5_D8 LATC
-
 // Prototypes des fonctions
 void delai_approx(void);
 
