@@ -9697,31 +9697,10 @@ extern __bank0 __bit __timeout;
 
 
 
-
-void delai_approx(void);
-
 void main(void) {
 
-    TRISD = 0x00;
-    TRISB = 0x00;
 
-    while (1) {
-
-        LATD = 0x0F;
-        LATB = 0x00;
-        delai_approx();
-
-
-        LATD = 0x00;
-        LATB = 0x0F;
-        delai_approx();
-    }
-}
-
-void delai_approx(void) {
-
-    for (unsigned long i = 0; i < 90000; i++)
-    {
+    while(1){
 
     }
 }

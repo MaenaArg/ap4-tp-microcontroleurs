@@ -6,14 +6,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1272
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1719.h: 1272: extern volatile unsigned char TRISB __attribute__((address(0x08D)));
 [v _TRISB `Vuc ~T0 @X0 0 e@141 ]
-"2476
-[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1719.h: 2476: extern volatile unsigned char LATD __attribute__((address(0x10F)));
-[v _LATD `Vuc ~T0 @X0 0 e@271 ]
 "2352
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1719.h: 2352: extern volatile unsigned char LATB __attribute__((address(0x10D)));
 [v _LATB `Vuc ~T0 @X0 0 e@269 ]
-"5 main.c
-[; ;main.c: 5: void delai_approx(void);
+"2476
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1719.h: 2476: extern volatile unsigned char LATD __attribute__((address(0x10F)));
+[v _LATD `Vuc ~T0 @X0 0 e@271 ]
+"4 main.c
+[; ;main.c: 4: void delai_approx(void);
 [v _delai_approx `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1719.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1719.h: 54: __asm("INDF0 equ 00h");
@@ -980,75 +980,111 @@ Version 4.0 HI-TECH Software Intermediate Code
 "35
 [p x LVP          =  OFF      ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"7 main.c
-[; ;main.c: 7: void main(void) {
+"6 main.c
+[; ;main.c: 6: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"9
-[; ;main.c: 9:     TRISD = 0x00;
+"8
+[; ;main.c: 8:     TRISD = 0x00;
 [e = _TRISD -> -> 0 `i `uc ]
-"10
-[; ;main.c: 10:     TRISB = 0x00;
+"9
+[; ;main.c: 9:     TRISB = 0x00;
 [e = _TRISB -> -> 0 `i `uc ]
-"12
-[; ;main.c: 12:     while (1) {
+"11
+[; ;main.c: 11:     while(1){
 [e :U 786 ]
 {
+"13
+[; ;main.c: 13:         LATB=0x00;
+[e = _LATB -> -> 0 `i `uc ]
 "14
-[; ;main.c: 14:         LATD = 0x0F;
+[; ;main.c: 14:         LATD=0x0F;
 [e = _LATD -> -> 15 `i `uc ]
 "15
-[; ;main.c: 15:         LATB = 0x00;
-[e = _LATB -> -> 0 `i `uc ]
+[; ;main.c: 15:         if(LATD < 0x08)
+[e $ ! < -> _LATD `i -> 8 `i 788  ]
 "16
-[; ;main.c: 16:         delai_approx();
+[; ;main.c: 16:         {
+{
+"17
+[; ;main.c: 17:             LATD = LATD*2;
+[e = _LATD -> * -> _LATD `i -> 2 `i `uc ]
+"18
+[; ;main.c: 18:             delai_approx();
 [e ( _delai_approx ..  ]
 "19
-[; ;main.c: 19:         LATD = 0x00;
-[e = _LATD -> -> 0 `i `uc ]
+[; ;main.c: 19:         }
+}
+[e $U 789  ]
 "20
-[; ;main.c: 20:         LATB = 0x0F;
-[e = _LATB -> -> 15 `i `uc ]
+[; ;main.c: 20:         else
+[e :U 788 ]
 "21
-[; ;main.c: 21:         delai_approx();
-[e ( _delai_approx ..  ]
+[; ;main.c: 21:         {
+{
 "22
-[; ;main.c: 22:     }
+[; ;main.c: 22:             LATD = 0x00;
+[e = _LATD -> -> 0 `i `uc ]
+"23
+[; ;main.c: 23:             LATB=0x01;
+[e = _LATB -> -> 1 `i `uc ]
+"24
+[; ;main.c: 24:             if(LATB<0x08)
+[e $ ! < -> _LATB `i -> 8 `i 790  ]
+"25
+[; ;main.c: 25:             {
+{
+"26
+[; ;main.c: 26:                 LATB=LATB*2;
+[e = _LATB -> * -> _LATB `i -> 2 `i `uc ]
+"27
+[; ;main.c: 27:                 delai_approx();
+[e ( _delai_approx ..  ]
+"28
+[; ;main.c: 28:             }
+}
+[e :U 790 ]
+"29
+[; ;main.c: 29:         }
+}
+[e :U 789 ]
+"30
+[; ;main.c: 30:     }
 }
 [e :U 785 ]
 [e $U 786  ]
 [e :U 787 ]
-"23
-[; ;main.c: 23: }
+"31
+[; ;main.c: 31: }
 [e :UE 784 ]
 }
-"25
-[; ;main.c: 25: void delai_approx(void) {
+"33
+[; ;main.c: 33: void delai_approx(void) {
 [v _delai_approx `(v ~T0 @X0 1 ef ]
 {
 [e :U _delai_approx ]
 [f ]
-"27
-[; ;main.c: 27:     for (unsigned long i = 0; i < 90000; i++)
+"35
+[; ;main.c: 35:     for (unsigned long i = 0; i < 90000; i++)
 {
 [v _i `ul ~T0 @X0 1 a ]
 [e = _i -> -> -> 0 `i `l `ul ]
-[e $ < _i -> -> 90000 `l `ul 789  ]
-[e $U 790  ]
-[e :U 789 ]
-"28
-[; ;main.c: 28:     {
+[e $ < _i -> -> 90000 `l `ul 792  ]
+[e $U 793  ]
+[e :U 792 ]
+"36
+[; ;main.c: 36:     {
 {
-"30
-[; ;main.c: 30:     }
+"38
+[; ;main.c: 38:     }
 }
 [e ++ _i -> -> -> 1 `i `l `ul ]
-[e $ < _i -> -> 90000 `l `ul 789  ]
-[e :U 790 ]
+[e $ < _i -> -> 90000 `l `ul 792  ]
+[e :U 793 ]
 }
-"31
-[; ;main.c: 31: }
-[e :UE 788 ]
+"39
+[; ;main.c: 39: }
+[e :UE 791 ]
 }
