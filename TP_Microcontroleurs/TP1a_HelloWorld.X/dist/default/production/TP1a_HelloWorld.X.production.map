@@ -5,10 +5,10 @@ Linker command line:
 -W-3 --edf=/Applications/microchip/xc8/v2.46/pic/dat/20240104201356_en.msgs \
   -cn -h+dist/default/production/TP1a_HelloWorld.X.production.sym \
   --cmf=dist/default/production/TP1a_HelloWorld.X.production.cmf -z \
-  -Q16F1719 -o/tmp/xcgu163IL/driver_tmp_3.o --defsym=__MPLAB_BUILD=1 \
+  -Q16F1719 -o/tmp/xc5lC2RbI/driver_tmp_3.o --defsym=__MPLAB_BUILD=1 \
   --fixupoverflow=error \
   -Mdist/default/production/TP1a_HelloWorld.X.production.map \
-  --md=/tmp/xcgu163IL/driver_tmp_0.dat -E1 -ver=XC8 Compiler --acfsm=1493 \
+  --md=/tmp/xc5lC2RbI/driver_tmp_0.dat -E1 -ver=XC8 Compiler --acfsm=1493 \
   -ACODE=00h-07FFhx8 -ASTRCODE=00h-03FFFh -ASTRING=00h-0FFhx64 \
   -ACONST=00h-0FFhx64 -AENTRY=00h-0FFhx64 -ACOMMON=070h-07Fh \
   -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh -ABANK2=0120h-016Fh \
@@ -52,8 +52,8 @@ dist/default/production/startup.o
 dist/default/production/TP1a_HelloWorld.X.production.o
                 cinit                               7FD      7FD        3      FFA       0
                 config                             8007     8007        2        0       4
-                text1                               7DF      7DF       1E      FBE       0
-                maintext                            7CB      7CB       14      F96       0
+                text1                               7BB      7BB       1E      F76       0
+                maintext                            7D9      7D9       24      FB2       0
                 cstackCOMMON                         70       70        4       70       1
 
 TOTAL           Name                               Link     Load   Length     Space
@@ -61,8 +61,8 @@ TOTAL           Name                               Link     Load   Length     Sp
                 end_init                              2        2        2         0
                 cinit                               7FD      7FD        3         0
                 reset_vec                             0        0        2         0
-                text1                               7DF      7DF       1E         0
-                maintext                            7CB      7CB       14         0
+                text1                               7BB      7BB       1E         0
+                maintext                            7D9      7D9       24         0
 
         CLASS   STRCODE        
 
@@ -226,8 +226,8 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000004  000004         0       0  CODE        2
-                text1                          0007DF  00001E  0007FD       FBE       0  CODE        2
-                maintext                       0007CB  000014  0007DF       F96       0  CODE        2
+                maintext                       0007D9  000024  0007FD       FB2       0  CODE        2
+                text1                          0007BB  00001E  0007D9       F76       0  CODE        2
                 cinit                          0007FD  000003  000800       FFA       0  CODE        2
                 cstackCOMMON                   000070  000004  000074        70       1  COMMON      1
 
@@ -262,12 +262,12 @@ UNUSED ADDRESS RANGES
         BANK8            00420-0046F              50           1
         BANK9            004A0-004EF              50           1
         BIGRAM           02000-027EF             7F0           1
-        CODE             00004-007CA             7C7           2
+        CODE             00004-007BA             7B7           2
                          00800-03FFF             800
         COMMON           00074-0007D               A           1
-        CONST            00004-007CA             100           2
+        CONST            00004-007BA             100           2
                          00800-03FFF             100
-        ENTRY            00004-007CA             100           2
+        ENTRY            00004-007BA             100           2
                          00800-03FFF             100
         IDLOC            08000-08003               4           2
         RAM              00020-0006F              50           1
@@ -328,17 +328,17 @@ UNUSED ADDRESS RANGES
         SFR7             00380-0039F              20           1
         SFR8             00400-0041F              20           1
         SFR9             00480-0049F              20           1
-        STRCODE          00004-007CA             7C7           2
+        STRCODE          00004-007BA             7B7           2
                          00800-03FFF            3800
-        STRING           00004-007CA             100           2
+        STRING           00004-007BA             100           2
                          00800-03FFF             100
 
                                   Symbol Table
 
-_LATB                    (abs)        0010D
-_LATD                    (abs)        0010F
-_TRISB                   (abs)        0008D
-_TRISD                   (abs)        0008F
+_LATBbits                (abs)        0010D
+_LATDbits                (abs)        0010F
+_TRISBbits               (abs)        0008D
+_TRISDbits               (abs)        0008F
 __H__absolute__          __absolute__ 00000
 __Habs1                  abs1         00000
 __Hbank0                 bank0        00000
@@ -537,14 +537,14 @@ ___stack_lo              stack        00000
 ___stackhi               (abs)        00000
 ___stacklo               (abs)        00000
 __end_of__initialization cinit        007FD
-__end_of_delai_approx    text1        007FD
-__end_of_main            maintext     007DF
+__end_of_delai_approx    text1        007D9
+__end_of_main            maintext     007FD
 __initialization         cinit        007FD
 __pcstackCOMMON          cstackCOMMON 00070
-__pmaintext              maintext     007CB
-__ptext1                 text1        007DF
-_delai_approx            text1        007DF
-_main                    maintext     007CB
+__pmaintext              maintext     007D9
+__ptext1                 text1        007BB
+_delai_approx            text1        007BB
+_main                    maintext     007D9
 btemp                    (abs)        0007E
 delai_approx@i           cstackCOMMON 00070
 end_of_initialization    cinit        007FD
@@ -569,8 +569,8 @@ shared
 shared estimated size: 1
 
 main.c
-		_main          		CODE           	07CB	0000	20
-		_delai_approx  		CODE           	07DF	0000	30
+		_main          		CODE           	07D9	0000	36
+		_delai_approx  		CODE           	07BB	0000	30
 
-main.c estimated size: 50
+main.c estimated size: 66
 

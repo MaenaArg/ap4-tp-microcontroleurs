@@ -6,8 +6,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _TRISB `Vuc ~T0 @X0 0 e@141 ]
 "1119
 [v _PR2 `Vuc ~T0 @X0 0 e@27 ]
-"1139
-[v _T2CON `Vuc ~T0 @X0 0 e@28 ]
+"1145
+[s S66 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
+[n S66 . T2CKPS TMR2ON T2OUTPS ]
+"1150
+[s S67 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S67 . T2CKPS0 T2CKPS1 . T2OUTPS0 T2OUTPS1 T2OUTPS2 T2OUTPS3 ]
+"1144
+[u S65 `S66 1 `S67 1 ]
+[n S65 . . . ]
+"1160
+[v _T2CONbits `VS65 ~T0 @X0 0 e@28 ]
+"2476
+[v _LATD `Vuc ~T0 @X0 0 e@271 ]
+"2352
+[v _LATB `Vuc ~T0 @X0 0 e@269 ]
 "721
 [s S44 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S44 . TMR1IF TMR2IF CCP1IF SSP1IF TXIF RCIF ADIF TMR1GIF ]
@@ -16,10 +29,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S43 . . ]
 "732
 [v _PIR1bits `VS43 ~T0 @X0 0 e@17 ]
-"2476
-[v _LATD `Vuc ~T0 @X0 0 e@271 ]
-"2352
-[v _LATB `Vuc ~T0 @X0 0 e@269 ]
 "54 /Applications/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1719.h
 [; <" INDF0 equ 00h ;# ">
 "74
@@ -684,107 +693,122 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _timer_count
 -> 0 `i
 ]
+"16
+[v _cpt `i ~T0 @X0 1 e ]
+[i _cpt
+-> 0 `i
+]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"17
+"18
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"19
-[e =& _TRISD -> ~ | | | -> 1 `i -> 2 `i -> 4 `i -> 8 `i `Vuc ]
 "20
+[e =& _TRISD -> ~ | | | -> 1 `i -> 2 `i -> 4 `i -> 8 `i `Vuc ]
+"21
 [e =& _TRISB -> ~ | | | -> 1 `i -> 2 `i -> 4 `i -> 8 `i `Vuc ]
-"22
-[e = _PR2 -> -> 255 `i `uc ]
-"23
-[e = _T2CON -> -> 124 `i `uc ]
-"25
+"24
+[e = _PR2 -> -> 124 `i `uc ]
+"26
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+"27
+[e = . . _T2CONbits 0 0 -> -> 0 `i `uc ]
+"28
+[e = . . _T2CONbits 0 2 -> -> 15 `i `uc ]
+"30
 [e :U 786 ]
 {
-"26
-[e $ ! != -> . . _PIR1bits 0 1 `i -> 0 `i 788  ]
-"27
-{
-"28
-[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"31
-[e ++ _timer_count -> 1 `i ]
-"34
-[e $ ! >= _timer_count -> 61 `i 789  ]
-"35
-{
-"36
-[e = _timer_count -> 0 `i ]
-"39
+"33
 [e = _LATD -> -> 0 `i `uc ]
-"40
+"34
 [e = _LATB -> -> 0 `i `uc ]
-"43
-[e $U 791  ]
+"37
+[e $U 789  ]
 {
-"45
-[e :U 792 ]
-[e =| _LATD -> -> 1 `i `Vuc ]
-[e $U 790  ]
-"46
-[e :U 793 ]
-[e =| _LATD -> -> 2 `i `Vuc ]
-[e $U 790  ]
-"47
-[e :U 794 ]
-[e =| _LATD -> -> 4 `i `Vuc ]
-[e $U 790  ]
-"48
-[e :U 795 ]
-[e =| _LATD -> -> 8 `i `Vuc ]
-[e $U 790  ]
-"49
-[e :U 796 ]
-[e =| _LATB -> -> 1 `i `Vuc ]
-[e $U 790  ]
-"50
-[e :U 797 ]
-[e =| _LATB -> -> 2 `i `Vuc ]
-[e $U 790  ]
-"51
-[e :U 798 ]
-[e =| _LATB -> -> 4 `i `Vuc ]
-[e $U 790  ]
-"52
-[e :U 799 ]
-[e =| _LATB -> -> 8 `i `Vuc ]
-[e $U 790  ]
-"53
-}
-[e $U 790  ]
-[e :U 791 ]
-[e [\ _led_index , $ -> 0 `i 792
- , $ -> 1 `i 793
- , $ -> 2 `i 794
- , $ -> 3 `i 795
- , $ -> 4 `i 796
- , $ -> 5 `i 797
- , $ -> 6 `i 798
- , $ -> 7 `i 799
- 790 ]
+"39
 [e :U 790 ]
-"55
-[e ++ _led_index -> 1 `i ]
-"56
-[e $ ! >= _led_index -> 8 `i 800  ]
-[e = _led_index -> 0 `i ]
-[e :U 800 ]
-"57
+[e =| _LATD -> -> 1 `i `Vuc ]
+[e $U 788  ]
+"40
+[e :U 791 ]
+[e =| _LATD -> -> 2 `i `Vuc ]
+[e $U 788  ]
+"41
+[e :U 792 ]
+[e =| _LATD -> -> 4 `i `Vuc ]
+[e $U 788  ]
+"42
+[e :U 793 ]
+[e =| _LATD -> -> 8 `i `Vuc ]
+[e $U 788  ]
+"43
+[e :U 794 ]
+[e =| _LATB -> -> 1 `i `Vuc ]
+[e $U 788  ]
+"44
+[e :U 795 ]
+[e =| _LATB -> -> 2 `i `Vuc ]
+[e $U 788  ]
+"45
+[e :U 796 ]
+[e =| _LATB -> -> 4 `i `Vuc ]
+[e $U 788  ]
+"46
+[e :U 797 ]
+[e =| _LATB -> -> 8 `i `Vuc ]
+[e $U 788  ]
+"47
 }
+[e $U 788  ]
 [e :U 789 ]
-"58
-}
+[e [\ _led_index , $ -> 0 `i 790
+ , $ -> 1 `i 791
+ , $ -> 2 `i 792
+ , $ -> 3 `i 793
+ , $ -> 4 `i 794
+ , $ -> 5 `i 795
+ , $ -> 6 `i 796
+ , $ -> 7 `i 797
+ 788 ]
 [e :U 788 ]
-"59
+"49
+[e $U 798  ]
+[e :U 799 ]
+{
+"50
+[e $U 801  ]
+[e :U 802 ]
+"51
+{
+}
+[e :U 801 ]
+"50
+[e $ ! != -> . . _PIR1bits 0 1 `i -> 0 `i 802  ]
+[e :U 803 ]
+"52
+[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
+"53
+[e ++ _cpt -> 1 `i ]
+"54
+}
+[e :U 798 ]
+"49
+[e $ < _cpt -> 125 `i 799  ]
+[e :U 800 ]
+"55
+[e = _cpt -> 0 `i ]
+"56
+[e ++ _led_index -> 1 `i ]
+"57
+[e $ ! >= _led_index -> 8 `i 804  ]
+[e = _led_index -> 0 `i ]
+[e :U 804 ]
+"58
 }
 [e :U 785 ]
 [e $U 786  ]
 [e :U 787 ]
-"60
+"59
 [e :UE 784 ]
 }

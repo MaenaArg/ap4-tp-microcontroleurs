@@ -721,12 +721,12 @@ TOSL equ 0FEEh ;#
 TOSH equ 0FEFh ;# 
 	debug_source C
 	FNROOT	_main
-	global	_timer_count
+	global	_cpt
 	global	_led_index
 	global	_PIR1bits
 _PIR1bits	set	0x11
-	global	_T2CON
-_T2CON	set	0x1C
+	global	_T2CONbits
+_T2CONbits	set	0x1C
 	global	_PR2
 _PR2	set	0x1B
 	global	_TRISB
@@ -771,6 +771,9 @@ __initialization:
 psect	bssCOMMON,class=COMMON,space=1,noexec
 global __pbssCOMMON
 __pbssCOMMON:
+_cpt:
+       ds      2
+
 _timer_count:
        ds      2
 
@@ -786,6 +789,8 @@ psect cinit,class=CODE,delta=2,merge=1
 	clrf	((__pbssCOMMON)+1)&07Fh
 	clrf	((__pbssCOMMON)+2)&07Fh
 	clrf	((__pbssCOMMON)+3)&07Fh
+	clrf	((__pbssCOMMON)+4)&07Fh
+	clrf	((__pbssCOMMON)+5)&07Fh
 psect cinit,class=CODE,delta=2,merge=1
 global end_of_initialization,__end_of__initialization
 
@@ -806,13 +811,13 @@ __pcstackCOMMON:
 ;!    Strings     0
 ;!    Constant    0
 ;!    Data        0
-;!    BSS         4
+;!    BSS         6
 ;!    Persistent  32
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMMON           14      1       5
+;!    COMMON           14      1       7
 ;!    BANK0            80      0       0
 ;!    BANK1            80      0       0
 ;!    BANK2            80      0       0
@@ -985,7 +990,7 @@ __pcstackCOMMON:
 ;!BITCOMMON            E      0       0       1        0.0%
 ;!BITSFR0              0      0       0       1        0.0%
 ;!SFR0                 0      0       0       1        0.0%
-;!COMMON               E      1       5       2       35.7%
+;!COMMON               E      1       7       2       50.0%
 ;!BITSFR1              0      0       0       2        0.0%
 ;!SFR1                 0      0       0       2        0.0%
 ;!BITSFR2              0      0       0       3        0.0%
@@ -1023,7 +1028,7 @@ __pcstackCOMMON:
 ;!SFR12                0      0       0      13        0.0%
 ;!BITSFR13             0      0       0      14        0.0%
 ;!SFR13                0      0       0      14        0.0%
-;!ABS                  0      0       5      14        0.0%
+;!ABS                  0      0       7      14        0.0%
 ;!BITBANK5            50      0       0      15        0.0%
 ;!BITSFR14             0      0       0      15        0.0%
 ;!SFR14                0      0       0      15        0.0%
@@ -1065,7 +1070,7 @@ __pcstackCOMMON:
 ;!SFR26                0      0       0      27        0.0%
 ;!BITSFR27             0      0       0      28        0.0%
 ;!SFR27                0      0       0      28        0.0%
-;!DATA                 0      0       5      28        0.0%
+;!DATA                 0      0       7      28        0.0%
 ;!BANK11              50      0       0      29        0.0%
 ;!BITSFR28             0      0       0      29        0.0%
 ;!SFR28                0      0       0      29        0.0%
@@ -1108,7 +1113,7 @@ __pcstackCOMMON:
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 17 in file "main.c"
+;;		line 18 in file "main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1135,135 +1140,104 @@ __pcstackCOMMON:
 ;;
 psect	maintext,global,class=CODE,delta=2,merge=1,split=1,group=0
 	file	"main.c"
-	line	17
+	line	18
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
 	file	"main.c"
-	line	17
+	line	18
 	
 _main:	
 ;incstack = 0
 	callstack 16
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0]
-	line	19
+	line	20
 	
-l565:	
+l571:	
 	movlw	low(0F0h)
 	movwf	(??_main+0)+0
 	movf	(??_main+0)+0,w
 	movlb 1	; select bank1
 	andwf	(143)^080h,f	;volatile
-	line	20
+	line	21
 	movlw	low(0F0h)
 	movwf	(??_main+0)+0
 	movf	(??_main+0)+0,w
 	andwf	(141)^080h,f	;volatile
-	line	22
-	
-l567:	
-	movlw	low(0FFh)
-	movlb 0	; select bank0
-	movwf	(27)	;volatile
-	line	23
-	
-l569:	
-	movlw	low(07Ch)
-	movwf	(28)	;volatile
-	line	26
-	
-l571:	
-	movlb 0	; select bank0
-	btfss	(17),1	;volatile
-	goto	u11
-	goto	u10
-u11:
-	goto	l571
-u10:
-	line	28
+	line	24
 	
 l573:	
-	bcf	(17),1	;volatile
-	line	31
+	movlw	low(07Ch)
+	movlb 0	; select bank0
+	movwf	(27)	;volatile
+	line	26
 	
 l575:	
-	movlw	01h
-	addwf	(_timer_count),f
-	movlw	0
-	addwfc	(_timer_count+1),f
-	line	34
-	movf	(_timer_count+1),w
-	xorlw	80h
-	movwf	(??_main+0)+0
-	movlw	(0)^80h
-	subwf	(??_main+0)+0,w
-	skipz
-	goto	u25
-	movlw	03Dh
-	subwf	(_timer_count),w
-u25:
-
-	skipc
-	goto	u21
-	goto	u20
-u21:
-	goto	l571
-u20:
-	line	36
+	bsf	(28),2	;volatile
+	line	27
 	
 l577:	
-	clrf	(_timer_count)
-	clrf	(_timer_count+1)
-	line	39
+	movlw	((0 & ((1<<2)-1))<<0)|not (((1<<2)-1)<<0)
+	andwf	(28),f	;volatile
+	line	28
+	
+l579:	
+	movlw	(0Fh & ((1<<4)-1))<<3
+	iorwf	(28),f	;volatile
+	line	33
+	
+l581:	
 	movlb 2	; select bank2
 	clrf	(271)^0100h	;volatile
-	line	40
+	line	34
+	
+l583:	
 	clrf	(269)^0100h	;volatile
-	line	43
-	goto	l581
-	line	45
+	line	37
+	goto	l587
+	line	39
 	
 l27:	
 	bsf	(271)^0100h+(0/8),(0)&7	;volatile
-	goto	l583
-	line	46
+	goto	l36
+	line	40
 	
 l29:	
 	bsf	(271)^0100h+(1/8),(1)&7	;volatile
-	goto	l583
-	line	47
+	goto	l36
+	line	41
 	
 l30:	
 	bsf	(271)^0100h+(2/8),(2)&7	;volatile
-	goto	l583
-	line	48
+	goto	l36
+	line	42
 	
 l31:	
 	bsf	(271)^0100h+(3/8),(3)&7	;volatile
-	goto	l583
-	line	49
+	goto	l36
+	line	43
 	
 l32:	
 	bsf	(269)^0100h+(0/8),(0)&7	;volatile
-	goto	l583
-	line	50
+	goto	l36
+	line	44
 	
 l33:	
 	bsf	(269)^0100h+(1/8),(1)&7	;volatile
-	goto	l583
-	line	51
+	goto	l36
+	line	45
 	
 l34:	
 	bsf	(269)^0100h+(2/8),(2)&7	;volatile
-	goto	l583
-	line	52
+	goto	l36
+	line	46
 	
 l35:	
 	bsf	(269)^0100h+(3/8),(3)&7	;volatile
-	goto	l583
-	line	53
+	goto	l36
+	line	47
 	
-l581:	
+l587:	
 	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
 ; Switch size 1, requested type "simple"
 ; Number of cases is 1, Range of values is 0 to 0
@@ -1279,11 +1253,11 @@ l581:
 	asmopt off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l623
-	goto	l583
+	goto	l635
+	goto	l36
 	asmopt pop
 	
-l623:	
+l635:	
 ; Switch size 1, requested type "simple"
 ; Number of cases is 8, Range of values is 0 to 7
 ; switch strategies available:
@@ -1320,17 +1294,67 @@ l623:
 	xorlw	7^6	; case 7
 	skipnz
 	goto	l35
-	goto	l583
+	goto	l36
 	asmopt pop
 
+	line	51
+	
+l38:	
+	line	50
+	movlb 0	; select bank0
+	btfss	(17),1	;volatile
+	goto	u11
+	goto	u10
+u11:
+	goto	l38
+u10:
+	
+l40:	
+	line	52
+	bcf	(17),1	;volatile
+	line	53
+	
+l589:	
+	movlw	01h
+	addwf	(_cpt),f
+	movlw	0
+	addwfc	(_cpt+1),f
+	line	54
+	
+l36:	
+	line	49
+	movf	(_cpt+1),w
+	xorlw	80h
+	movwf	(??_main+0)+0
+	movlw	(0)^80h
+	subwf	(??_main+0)+0,w
+	skipz
+	goto	u25
+	movlw	07Dh
+	subwf	(_cpt),w
+u25:
+
+	skipc
+	goto	u21
+	goto	u20
+u21:
+	goto	l38
+u20:
 	line	55
 	
-l583:	
+l591:	
+	clrf	(_cpt)
+	clrf	(_cpt+1)
+	line	56
+	
+l593:	
 	movlw	01h
 	addwf	(_led_index),f
 	movlw	0
 	addwfc	(_led_index+1),f
-	line	56
+	line	57
+	
+l595:	
 	movf	(_led_index+1),w
 	xorlw	80h
 	movwf	(??_main+0)+0
@@ -1346,21 +1370,17 @@ u35:
 	goto	u31
 	goto	u30
 u31:
-	goto	l24
+	goto	l581
 u30:
 	
-l585:	
+l597:	
 	clrf	(_led_index)
 	clrf	(_led_index+1)
-	goto	l571
-	line	58
-	
-l24:	
-	goto	l571
+	goto	l581
 	global	start
 	ljmp	start
 	callstack 0
-	line	60
+	line	59
 GLOBAL	__end_of_main
 	__end_of_main:
 	signat	_main,89

@@ -13,48 +13,48 @@
 
 int led_index = 0;
 int timer_count = 0;
+int cpt = 0;
 
 void main(void) {
     /* Configuration des ports */
     TRISD &= ~(MASK_LED1 | MASK_LED2 | MASK_LED3 | MASK_LED4);
     TRISB &= ~(MASK_LED5 | MASK_LED6 | MASK_LED7 | MASK_LED8);
 
-    PR2 = 255;
-    T2CON = 0b01111100; // Prescaler 1, Postscaler 1:16, Timer2 activé
-
+   // Valeurs trouvées à l'aide d'une feuille de calculs
+    PR2 = 124;
+    //T2CON = 0b01111100; // Prescaler 1, Postscaler 1:16, Timer2 activé
+    T2CONbits.TMR2ON=1; // the timer is enable
+    T2CONbits.T2CKPS=0b00; // Prescaler ? 1:1
+    T2CONbits.T2OUTPS=0b1111; // Postscaler ? 1:16
+    
     while(1) {
-        if (PIR1bits.TMR2IF) //si timer à débordé
-        {
-            PIR1bits.TMR2IF = 0; //remet timer a 0
-
-            // Incrémentation du compteur
-            timer_count++;
-
-            // Toutes les secondes
-            if (timer_count >= 61) 
-            { 
-                timer_count = 0;
-
-                // Eteindre toutes les LEDs
+            
+            // Eteindre toutes les LEDs
                 LATD = 0x00;
                 LATB = 0x00;
-
-                // Allume LED une après l'autre
-                switch (led_index) {
-                    //fait un OU entre valeur de la sortie (LATD) et le masque de la LED
-                    case 0: LATD |= MASK_LED1; break;
-                    case 1: LATD |= MASK_LED2; break;
-                    case 2: LATD |= MASK_LED3; break;
-                    case 3: LATD |= MASK_LED4; break;
-                    case 4: LATB |= MASK_LED5; break;
-                    case 5: LATB |= MASK_LED6; break;
-                    case 6: LATB |= MASK_LED7; break;
-                    case 7: LATB |= MASK_LED8; break;
-                }
-
-                led_index++;
-                if (led_index >= 8) led_index = 0;
+                
+            // Allume LED une après l'autre
+            switch (led_index) {
+                //fait un OU entre valeur de la sortie (LATD) et le masque de la LED
+                case 0: LATD |= MASK_LED1; break;
+                case 1: LATD |= MASK_LED2; break;
+                case 2: LATD |= MASK_LED3; break;
+                case 3: LATD |= MASK_LED4; break;
+                case 4: LATB |= MASK_LED5; break;
+                case 5: LATB |= MASK_LED6; break;
+                case 6: LATB |= MASK_LED7; break;
+                case 7: LATB |= MASK_LED8; break;
             }
-        }
+            
+            // On attend 125 fois 1ms car 8*125 = 1seconde
+            while(cpt < 125){
+                while (!PIR1bits.TMR2IF) 
+                {} //Tant que timer n'a pas expiré on attend
+                PIR1bits.TMR2IF = 0; //Quand le timer a expiré on remet le timer à 0
+                cpt++;
+            }
+            cpt = 0;
+            led_index++;
+            if (led_index >= 8) led_index = 0;
     }
 }
