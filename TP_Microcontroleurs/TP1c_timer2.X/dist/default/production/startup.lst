@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.46 build 20240104201356 
-                                                                                                           Fri Jan 24 12:11:39 2025
+                                                                                                           Tue Feb  4 08:50:01 2025
 
 
      1                           	processor	16F1719
@@ -109,69 +109,67 @@ Microchip MPLAB XC8 Assembler V2.46 build 20240104201356
    103                           ; -q --opt=none --chip=16f1719 \
    104                           ; -Mdist/default/production/TP1c_timer2.X.production.map \
    105                           ; -DXPRJ_default=default -L--defsym=__MPLAB_BUILD=1 \
-   106                           ; --dfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8 \
-   107                           ; --opt=+asmfile --addrqual=ignore -P --warn=-3 --asmlist --std=c99 \
-   108                           ; --output=+elf:multilocs --stack=compiled:auto:auto --summary=+xml \
-   109                           ; --summarydir=dist/default/production/memoryfile.xml \
-   110                           ; -oTP1c_timer2.X.production.elf --objdir=dist/default/production \
-   111                           ; --outdir=dist/default/production build/default/production/main.p1 \
-   112                           ; -L--fixupoverflow=error --callgraph=none \
-   113                           ; --errformat=%f:%l:%c: error: (%n) %s \
-   114                           ; --warnformat=%f:%l:%c: warning: (%n) %s \
-   115                           ; --msgformat=%f:%l:%c: advisory: (%n) %s
-   116                           ;
-   117     0000                     C	set	0
-   118     0002                     Z	set	2
-   119     0002                     PCL	set	2
-   120     0000                     INDF	set	0
-   121     000A                     
-   122                           	psect	functab
-   123     0000                     intlevel0:
-   124     0000                     intlevel1:
-   125     0000                     intlevel2:
-   126     0000                     intlevel3:
-   127     0000                     intlevel4:
-   128     0000                     intlevel5:
-   129                           
-   130                           	psect	init
-   131     0002                     start:	
-   132                           ; No interrupt routine
-   133                           
-   134                           
-   135                           ;Initialize the stack pointer (FSR1)
-   136     0000                     
-   137                           	psect	end_init
-   138     0002  3187  2FF9         	ljmp	start_initialization	;jump to C runtime clear & initialization
-   139                           
-   140                           	psect	clrtext
-   141     0000                     INDF0	set	0
-   142     0001                     INDF1	set	1
-   143     0002                     PCL	set	2
-   144     0003                     STATUS	set	3
-   145     0004                     FSR0L	set	4
-   146     0005                     FSR0H	set	5
-   147     0006                     FSR1L	set	6
-   148     0007                     FSR1H	set	7
-   149     0008                     BSR	set	8
-   150     0009                     WREG	set	9
-   151     000A                     PCLATH	set	10
-   152     000B                     INTCON	set	11
-   153                           
-   154                           	psect	stack
-   155     0000                     ___sp:
-   156     0000                     ___int_sp:
-   157     0000                     ___stack_lo:
-   158     0000                     ___stack_hi:
-   159     0000                     ___int_stack_lo:
-   160     0000                     ___int_stack_hi:
+   106                           ; --dfp=/Applications/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8 \
+   107                           ; --summary=+xml --summarydir=dist/default/production/memoryfile.xml \
+   108                           ; -oTP1c_timer2.X.production.elf --objdir=dist/default/production \
+   109                           ; --outdir=dist/default/production build/default/production/main.p1 \
+   110                           ; -L--fixupoverflow=error --std=c99 --callgraph=none --warn=-3 \
+   111                           ; --errformat=%f:%l:%c: error: (%n) %s \
+   112                           ; --warnformat=%f:%l:%c: warning: (%n) %s \
+   113                           ; --msgformat=%f:%l:%c: advisory: (%n) %s
+   114                           ;
+   115     0000                     C	set	0
+   116     0002                     Z	set	2
+   117     0002                     PCL	set	2
+   118     0000                     INDF	set	0
+   119     000A                     
+   120                           	psect	functab
+   121     0000                     intlevel0:
+   122     0000                     intlevel1:
+   123     0000                     intlevel2:
+   124     0000                     intlevel3:
+   125     0000                     intlevel4:
+   126     0000                     intlevel5:
+   127                           
+   128                           	psect	init
+   129     0002                     start:	
+   130                           ; No interrupt routine
+   131                           
+   132                           
+   133                           ;Initialize the stack pointer (FSR1)
+   134     0000                     
+   135                           	psect	end_init
+   136     0002  3187  2FF9         	ljmp	start_initialization	;jump to C runtime clear & initialization
+   137                           
+   138                           	psect	clrtext
+   139     0000                     INDF0	set	0
+   140     0001                     INDF1	set	1
+   141     0002                     PCL	set	2
+   142     0003                     STATUS	set	3
+   143     0004                     FSR0L	set	4
+   144     0005                     FSR0H	set	5
+   145     0006                     FSR1L	set	6
+   146     0007                     FSR1H	set	7
+   147     0008                     BSR	set	8
+   148     0009                     WREG	set	9
+   149     000A                     PCLATH	set	10
+   150     000B                     INTCON	set	11
+   151                           
+   152                           	psect	stack
+   153     0000                     ___sp:
+   154     0000                     ___int_sp:
+   155     0000                     ___stack_lo:
+   156     0000                     ___stack_hi:
+   157     0000                     ___int_stack_lo:
+   158     0000                     ___int_stack_hi:
+   159                           
+   160                           	psect	heap
    161                           
-   162                           	psect	heap
-   163                           
-   164                           ; No heap to be allocated
+   162                           ; No heap to be allocated
 
 
 Microchip Technology PIC Macro Assembler V2.46 build 20240104201356 
-Symbol Table                                                                                               Fri Jan 24 12:11:39 2025
+Symbol Table                                                                                               Tue Feb  4 08:50:01 2025
 
                ___sp 0000                 _main 0788                 start 0002           ___stack_hi 0000  
          ___stack_lo 0000       ___int_stack_hi 0000       ___int_stack_lo 0000  start_initialization 07F9  

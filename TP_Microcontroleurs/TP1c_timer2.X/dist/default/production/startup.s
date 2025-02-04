@@ -10,13 +10,11 @@
 	; -q --opt=none --chip=16f1719 \
 	; -Mdist/default/production/TP1c_timer2.X.production.map \
 	; -DXPRJ_default=default -L--defsym=__MPLAB_BUILD=1 \
-	; --dfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8 \
-	; --opt=+asmfile --addrqual=ignore -P --warn=-3 --asmlist --std=c99 \
-	; --output=+elf:multilocs --stack=compiled:auto:auto --summary=+xml \
-	; --summarydir=dist/default/production/memoryfile.xml \
+	; --dfp=/Applications/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8 \
+	; --summary=+xml --summarydir=dist/default/production/memoryfile.xml \
 	; -oTP1c_timer2.X.production.elf --objdir=dist/default/production \
 	; --outdir=dist/default/production build/default/production/main.p1 \
-	; -L--fixupoverflow=error --callgraph=none \
+	; -L--fixupoverflow=error --std=c99 --callgraph=none --warn=-3 \
 	; --errformat=%f:%l:%c: error: (%n) %s \
 	; --warnformat=%f:%l:%c: warning: (%n) %s \
 	; --msgformat=%f:%l:%c: advisory: (%n) %s

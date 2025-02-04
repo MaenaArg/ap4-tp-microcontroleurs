@@ -228,8 +228,12 @@ cstackCOMMON 70 73 COMMON 70 1
 text1 FBE FF9 CODE FBE 0
 maintext F96 FBD CODE F96 0
 %locals
-dist/default/production\TP1a_HelloWorld.X.production.o
-C:\Users\ninil\AppData\Local\Temp\xcAsha4.\driver_tmp_1.s
+dist/default/production/startup.o
+dist/default/production/startup.s
+76 0 0 CODE 0
+110 2 0 CODE 0
+dist/default/production/TP1a_HelloWorld.X.production.o
+dist/default/production/TP1a_HelloWorld.X.production.s
 752 7FD 0 CODE 0
 755 7FD 0 CODE 0
 761 7FD 0 CODE 0
