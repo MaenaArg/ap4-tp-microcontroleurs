@@ -1,10 +1,62 @@
-#include "configbits.h" // Bits de configuration
-#include <xc.h>         // Definition des registres specifiques au uC
+// TIMER INTERRUPT
+
+#include "configbits.h"
+#include <xc.h>
+
+// Définitions des masques LED
+#define MASK_LED1 0x01
+#define MASK_LED2 0x02
+#define MASK_LED3 0x04
+#define MASK_LED4 0x08
+#define MASK_LED5 0x01
+#define MASK_LED6 0x02
+#define MASK_LED7 0x04
+#define MASK_LED8 0x08
+
+int led_index = 0;
+int timer_count = 0;
 
 void main(void) {
-    /* Code d'initialisation */
+    /* Configuration des ports */
+    TRISD &= ~(MASK_LED1 | MASK_LED2 | MASK_LED3 | MASK_LED4);
+    TRISB &= ~(MASK_LED5 | MASK_LED6 | MASK_LED7 | MASK_LED8);
 
-    while(1){
-        /* Code a executer dans une boucle infinie */
+    PR2 = 255;
+    T2CON = 0b01111100; // Prescaler 1, Postscaler 1:16, Timer2 activé
+
+    while(1) {
+        if (PIR1bits.TMR2IF) //si timer à débordé
+        {
+            PIR1bits.TMR2IF = 0; //remet timer a 0
+
+            // Incrémentation du compteur
+            timer_count++;
+
+            // Toutes les secondes
+            if (timer_count >= 61) 
+            { 
+                timer_count = 0;
+
+                // Eteindre toutes les LEDs
+                LATD = 0x00;
+                LATB = 0x00;
+
+                // Allume LED une après l'autre
+                switch (led_index) {
+                    //fait un OU entre valeur de la sortie (LATD) et le masque de la LED
+                    case 0: LATD |= MASK_LED1; break;
+                    case 1: LATD |= MASK_LED2; break;
+                    case 2: LATD |= MASK_LED3; break;
+                    case 3: LATD |= MASK_LED4; break;
+                    case 4: LATB |= MASK_LED5; break;
+                    case 5: LATB |= MASK_LED6; break;
+                    case 6: LATB |= MASK_LED7; break;
+                    case 7: LATB |= MASK_LED8; break;
+                }
+
+                led_index++;
+                if (led_index >= 8) led_index = 0;
+            }
+        }
     }
 }
