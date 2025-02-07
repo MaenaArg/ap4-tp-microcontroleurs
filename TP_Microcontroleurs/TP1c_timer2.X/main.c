@@ -20,7 +20,7 @@ void main(void) {
     TRISD &= ~(MASK_LED1 | MASK_LED2 | MASK_LED3 | MASK_LED4);
     TRISB &= ~(MASK_LED5 | MASK_LED6 | MASK_LED7 | MASK_LED8);
 
-   // Valeurs trouvées à l'aide d'une feuille de calculs
+    // Valeurs trouvées à l'aide d'une feuille de calculs
     PR2 = 124;
     //T2CON = 0b01111100; // Prescaler 1, Postscaler 1:16, Timer2 activé
     T2CONbits.TMR2ON=1; // the timer is enable
