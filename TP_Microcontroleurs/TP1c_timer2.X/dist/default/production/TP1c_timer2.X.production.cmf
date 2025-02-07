@@ -11,15 +11,15 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$dist/default/production/startup.o
-reset_vec CODE 0 0 0 2 2 1
-end_init CODE 0 2 2 2 2 1
-config CONFIG 4 8007 8007 2 2 1
 $dist/default/production/TP1c_timer2.X.production.o
 cinit CODE 0 7F7 7F7 9 2 1
 maintext CODE 0 784 784 73 2 1
 cstackCOMMON COMMON 1 76 76 1 1 1
 bssCOMMON COMMON 1 70 70 6 1 1
+config CONFIG 4 8007 8007 2 2 1
+$/tmp/xcJ7Ckcwv/driver_tmp_12.o
+reset_vec CODE 0 0 0 2 2 1
+end_init CODE 0 2 2 2 2 1
 config CONFIG 4 8007 8007 2 2 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -137,21 +137,18 @@ STRING 800-3FFF 2
 # are in ascending order of addresses.
 # All other numeric values are in decimal.
 %LINETAB
-$dist/default/production/startup.o
-2 end_init CODE >110:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/startup.s
-0 reset_vec CODE >76:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/startup.s
 $dist/default/production/TP1c_timer2.X.production.o
-7F7 cinit CODE >759:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7F7 cinit CODE >762:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7F7 cinit CODE >780:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7F8 cinit CODE >781:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7F9 cinit CODE >782:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7FA cinit CODE >783:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7FB cinit CODE >784:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7FC cinit CODE >785:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7FD cinit CODE >791:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7FD cinit CODE >793:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
-7FE cinit CODE >794:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/dist/default/production/TP1c_timer2.X.production.s
+7F7 cinit CODE >759:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7F7 cinit CODE >762:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7F7 cinit CODE >780:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7F8 cinit CODE >781:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7F9 cinit CODE >782:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7FA cinit CODE >783:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7FB cinit CODE >784:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7FC cinit CODE >785:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7FD cinit CODE >791:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7FD cinit CODE >793:/tmp/xcJ7Ckcwv/driver_tmp_1.s
+7FE cinit CODE >794:/tmp/xcJ7Ckcwv/driver_tmp_1.s
 784 maintext CODE >18:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
 784 maintext CODE >20:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
 789 maintext CODE >21:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
@@ -180,19 +177,19 @@ $dist/default/production/TP1c_timer2.X.production.o
 7BF maintext CODE >47:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
 7C2 maintext CODE >47:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
 7C5 maintext CODE >47:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7C8 maintext CODE >50:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
 7C8 maintext CODE >51:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7CD maintext CODE >52:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7CE maintext CODE >53:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7D2 maintext CODE >49:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7D2 maintext CODE >54:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7D7 maintext CODE >49:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7DB maintext CODE >49:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7DF maintext CODE >55:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7E1 maintext CODE >56:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7E5 maintext CODE >57:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7EA maintext CODE >57:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
-7EE maintext CODE >57:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7C8 maintext CODE >52:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7CD maintext CODE >53:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7CE maintext CODE >54:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7D2 maintext CODE >50:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7D2 maintext CODE >55:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7D7 maintext CODE >50:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7DB maintext CODE >50:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7DF maintext CODE >56:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7E1 maintext CODE >57:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7E5 maintext CODE >58:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7EA maintext CODE >58:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
+7EE maintext CODE >58:/Users/margano/Desktop/JUNIA COURS/AP4/Microcontroleurs et FPGA/Microcontroleurs/AP4_Circuits_Programmables/ap4-tp-microcontroleurs/TP_Microcontroleurs/TP1c_timer2.X/main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -217,29 +214,29 @@ __L__absolute__ 0 0 ABS 0 __absolute__ -
 __Hstrings 0 0 ABS 0 strings -
 _LATB 10D 0 ABS 0 - dist/default/production/TP1c_timer2.X.production.o
 _LATD 10F 0 ABS 0 - dist/default/production/TP1c_timer2.X.production.o
-___sp 0 0 STACK 2 stack dist/default/production/startup.o
+___sp 0 0 STACK 2 stack /tmp/xcJ7Ckcwv/driver_tmp_12.o
 _main F08 0 CODE 0 maintext dist/default/production/TP1c_timer2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production/TP1c_timer2.X.production.o
-___stack_hi 0 0 STACK 2 stack dist/default/production/startup.o
-___stack_lo 0 0 STACK 2 stack dist/default/production/startup.o
-start 4 0 CODE 0 init dist/default/production/startup.o
+___stack_hi 0 0 STACK 2 stack /tmp/xcJ7Ckcwv/driver_tmp_12.o
+___stack_lo 0 0 STACK 2 stack /tmp/xcJ7Ckcwv/driver_tmp_12.o
+start 4 0 CODE 0 init /tmp/xcJ7Ckcwv/driver_tmp_12.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab dist/default/production/startup.o
-intlevel1 0 0 ENTRY 0 functab dist/default/production/startup.o
-intlevel2 0 0 ENTRY 0 functab dist/default/production/startup.o
-intlevel3 0 0 ENTRY 0 functab dist/default/production/startup.o
-intlevel4 0 0 ENTRY 0 functab dist/default/production/startup.o
-intlevel5 0 0 ENTRY 0 functab dist/default/production/startup.o
+intlevel0 0 0 ENTRY 0 functab /tmp/xcJ7Ckcwv/driver_tmp_12.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcJ7Ckcwv/driver_tmp_12.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcJ7Ckcwv/driver_tmp_12.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcJ7Ckcwv/driver_tmp_12.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcJ7Ckcwv/driver_tmp_12.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcJ7Ckcwv/driver_tmp_12.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production/TP1c_timer2.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - dist/default/production/startup.o
-___stacklo 0 0 ABS 0 - dist/default/production/startup.o
+___stackhi 0 0 ABS 0 - /tmp/xcJ7Ckcwv/driver_tmp_12.o
+___stacklo 0 0 ABS 0 - /tmp/xcJ7Ckcwv/driver_tmp_12.o
 start_initialization FEE 0 CODE 0 cinit dist/default/production/TP1c_timer2.X.production.o
-___int_sp 0 0 STACK 2 stack dist/default/production/startup.o
+___int_sp 0 0 STACK 2 stack /tmp/xcJ7Ckcwv/driver_tmp_12.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -372,7 +369,7 @@ __S0 800 0 ABS 0 - -
 __S1 77 0 ABS 0 - -
 _cpt 70 0 COMMON 1 bssCOMMON dist/default/production/TP1c_timer2.X.production.o
 __Lintentry 4 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec dist/default/production/startup.o
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcJ7Ckcwv/driver_tmp_12.o
 __Lbank10 0 0 ABS 0 bank10 -
 __Lbank11 0 0 ABS 0 bank11 -
 __Lbank12 0 0 ABS 0 bank12 -
@@ -416,8 +413,8 @@ __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __H__absolute__ 0 0 ABS 0 __absolute__ -
 __Lreset_vec 0 0 CODE 0 reset_vec -
-___heap_hi 0 0 ABS 0 - dist/default/production/startup.o
-___heap_lo 0 0 ABS 0 - dist/default/production/startup.o
+___heap_hi 0 0 ABS 0 - /tmp/xcJ7Ckcwv/driver_tmp_12.o
+___heap_lo 0 0 ABS 0 - /tmp/xcJ7Ckcwv/driver_tmp_12.o
 __end_of__initialization FFA 0 CODE 0 cinit dist/default/production/TP1c_timer2.X.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
@@ -430,8 +427,8 @@ __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 __initialization FEE 0 CODE 0 cinit dist/default/production/TP1c_timer2.X.production.o
 _T2CONbits 1C 0 ABS 0 - dist/default/production/TP1c_timer2.X.production.o
-___int_stack_hi 0 0 STACK 2 stack dist/default/production/startup.o
-___int_stack_lo 0 0 STACK 2 stack dist/default/production/startup.o
+___int_stack_hi 0 0 STACK 2 stack /tmp/xcJ7Ckcwv/driver_tmp_12.o
+___int_stack_lo 0 0 STACK 2 stack /tmp/xcJ7Ckcwv/driver_tmp_12.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.

@@ -231,12 +231,8 @@ cinit FEE FFF CODE FEE 0
 bssCOMMON 70 76 COMMON 70 1
 maintext F08 FED CODE F08 0
 %locals
-dist/default/production/startup.o
-dist/default/production/startup.s
-76 0 0 CODE 0
-110 2 0 CODE 0
 dist/default/production/TP1c_timer2.X.production.o
-dist/default/production/TP1c_timer2.X.production.s
+/tmp/xcJ7Ckcwv/driver_tmp_1.s
 759 7F7 0 CODE 0
 762 7F7 0 CODE 0
 780 7F7 0 CODE 0
@@ -277,16 +273,16 @@ main.c
 47 7BF 0 CODE 0
 47 7C2 0 CODE 0
 47 7C5 0 CODE 0
+52 7C8 0 CODE 0
 51 7C8 0 CODE 0
-50 7C8 0 CODE 0
-52 7CD 0 CODE 0
-53 7CE 0 CODE 0
-54 7D2 0 CODE 0
-49 7D2 0 CODE 0
-49 7D7 0 CODE 0
-49 7DB 0 CODE 0
-55 7DF 0 CODE 0
-56 7E1 0 CODE 0
-57 7E5 0 CODE 0
-57 7EA 0 CODE 0
-57 7EE 0 CODE 0
+53 7CD 0 CODE 0
+54 7CE 0 CODE 0
+55 7D2 0 CODE 0
+50 7D2 0 CODE 0
+50 7D7 0 CODE 0
+50 7DB 0 CODE 0
+56 7DF 0 CODE 0
+57 7E1 0 CODE 0
+58 7E5 0 CODE 0
+58 7EA 0 CODE 0
+58 7EE 0 CODE 0

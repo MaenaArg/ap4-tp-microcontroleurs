@@ -228,12 +228,8 @@ cstackCOMMON 70 73 COMMON 70 1
 maintext FB2 FF9 CODE FB2 0
 text1 F76 FB1 CODE F76 0
 %locals
-dist/default/production/startup.o
-dist/default/production/startup.s
-76 0 0 CODE 0
-110 2 0 CODE 0
 dist/default/production/TP1a_HelloWorld.X.production.o
-dist/default/production/TP1a_HelloWorld.X.production.s
+/tmp/xcP1BC9dV/driver_tmp_1.s
 752 7FD 0 CODE 0
 755 7FD 0 CODE 0
 761 7FD 0 CODE 0
