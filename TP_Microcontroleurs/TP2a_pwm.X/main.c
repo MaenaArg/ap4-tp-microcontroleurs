@@ -7,7 +7,6 @@
 void main(void) {
     /* Configuration des ports */
     TRISD &= ~(MASK_LED1);
-    TRISBbits.TRISB0 = 1;  // Configuration du bouton S1 en entrée
     ANSELBbits.ANSB0 = 0;  // On ne veut pas d'entrée analogique
             
     /* Configuration matérielle PWM via PPS */
